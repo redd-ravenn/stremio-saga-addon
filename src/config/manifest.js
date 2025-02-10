@@ -1,4 +1,4 @@
-const manifest = {
+module.exports = {
     id: 'community.collectionaddon',
     version: '1.0.0',
     logo: "https://i.imgur.com/jEPaX6R.png",
@@ -36,6 +36,4 @@ const manifest = {
             title: "Show Tagline",
         }
     ]
-};
-
-module.exports = manifest;
+}; 
