@@ -5,7 +5,7 @@
 - Sorts and displays content by release date within a TMDB movie collection.
 - Navigate directly between content items in Stremio.
 - Optionally displays ratings & vote counts ; the tagline/slogan of the content.
-- 6-month SQLite cache (maximum duration to comply with TMDB TOS) to enhance performance and reduce TMDB API calls, updating as soon as a new item is added to a cached collection.
+- 6 month Redis cache (maximum duration to comply with TMDB TOS) to enhance performance and reduce TMDB API calls, updating as soon as a new item is added to a cached collection.
 - Adheres to TMDB API rate limits (45 requests per second).
   
 ![Screenshot of an example of the addon's output on Stremio](https://i.imgur.com/o22Qdmo.png)
@@ -17,11 +17,9 @@
 ## Installation (with Docker)
 
 ```yaml
-version: '3.8'
-
 services:
   stremio-saga-addon:
-    image: reddravenn/stremio-saga-addon
+    build: .
     ports:
       # Map port 8080 on the host to port 7000 in the container
       - "8080:7000"
@@ -53,9 +51,31 @@ services:
       NODE_ENV: production
 
       # Determines the duration for which log files will be retained 
-      # The value can be expressed in days (d), weeks (w), or months (M). 
-      # For example, '3d' means that log files will be kept for 3 days before being deleted.
+      # The value can be expressed in days (d), weeks (w), or months (M)
+      # For example, '3d' means that log files will be kept for 3 days before being deleted
       LOG_INTERVAL_DELETION: 3d
+
+      # Redis credentials
+      # Optional but required for caching
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: redis_password
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  redis:
+    image: redis:alpine
+    command: redis-server --requirepass ${REDIS_PASSWORD:-redis_password}
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 ```
 
 ## Installation (without Docker)
