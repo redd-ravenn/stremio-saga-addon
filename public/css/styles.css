@@ -16,13 +16,16 @@
 body {
     font-family: 'Inter', sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 2rem 0;
+    min-height: 100vh;
     background-color: var(--background-color);
     color: var(--text-color);
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     line-height: 1.5;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
 
 #addon {
@@ -31,8 +34,9 @@ body {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     padding: 2.5rem;
     width: min(90%, 480px);
-    margin: 1rem;
+    margin: auto;
     animation: fadeIn 0.5s ease-out;
+    position: relative;
 }
 
 @keyframes fadeIn {
@@ -428,4 +432,29 @@ button:disabled {
     background: var(--primary-color);
     transform: none;
     border-color: var(--border-color);
+}
+
+@media (max-height: 800px) {
+    body {
+        padding: 1rem 0;
+    }
+
+    #addon {
+        padding: 1.5rem;
+    }
+
+    .logo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .form-element {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (min-height: 1000px) {
+    body {
+        padding: 3rem 0;
+    }
 } 
