@@ -1,0 +1,431 @@
+:root {
+    --primary-color: #5B48D9;
+    --primary-light: #7C6AE6;
+    --background-color: #0F0F13;
+    --card-background: #1A1B23;
+    --text-color: #FFFFFF;
+    --text-secondary: #9CA3AF;
+    --border-color: #2D2E3D;
+    --input-background: #13141B;
+    --success-color: #10B981;
+    --error-color: #EF4444;
+    --transition: all 0.3s ease;
+    --checkbox-hover-bg: #2A2D3D;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    line-height: 1.5;
+}
+
+#addon {
+    background: var(--card-background);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    padding: 2.5rem;
+    width: min(90%, 480px);
+    margin: 1rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.logo img {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+    text-align: center;
+}
+
+h2 {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0.5rem 0;
+    font-weight: 400;
+    text-align: center;
+}
+
+.separator {
+    height: 1px;
+    background: var(--border-color);
+    margin: 1.5rem 0;
+}
+
+.form-element {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--input-background);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    transition: var(--transition);
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(91, 72, 217, 0.1);
+}
+
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.25rem;
+    padding-right: 3rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(91, 72, 217, 0.1);
+}
+
+select option {
+    padding: 0.5rem;
+    background: var(--input-background);
+    color: var(--text-color);
+}
+
+@-moz-document url-prefix() {
+    select {
+        padding-right: 2rem;
+        background-position: right 0.5rem center;
+    }
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.form-element select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--input-background);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    padding-right: 3rem;
+}
+
+.form-element select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(91, 72, 217, 0.1);
+    outline: none;
+}
+
+.form-element select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.form-element select option {
+    padding: 0.75rem;
+    background-color: var(--input-background);
+    color: var(--text-color);
+}
+
+.form-element select option[value=""] {
+    color: var(--text-secondary);
+}
+
+@-moz-document url-prefix() {
+    .form-element select {
+        color: var(--text-color);
+        background-color: var(--input-background);
+    }
+    
+    .form-element select option {
+        background-color: var(--input-background);
+    }
+}
+
+.form-element select::-ms-expand {
+    display: none;
+}
+
+.form-element select:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.checkbox-wrapper:hover {
+    opacity: 1;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--input-background);
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition);
+}
+
+input[type="checkbox"]:hover {
+    border-color: var(--primary-light);
+    background: var(--card-background);
+}
+
+input[type="checkbox"]:checked {
+    background: var(--primary-light);
+    border-color: var(--primary-light);
+}
+
+input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.button-container {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+button {
+    width: 100%;
+    padding: 0.875rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.install-link button {
+    background: var(--primary-color);
+    color: white;
+}
+
+.install-link button:hover {
+    background: var(--primary-light);
+    transform: none;
+}
+
+.copy-link button {
+    background: var(--input-background);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.copy-link button:hover {
+    background: var(--card-background);
+    border-color: var(--primary-color);
+}
+
+.popup {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.popup.success {
+    background: var(--success-color);
+    color: white;
+}
+
+.popup.error {
+    background: var(--error-color);
+    color: white;
+}
+
+a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+.hint {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0.5rem 0 0;
+}
+
+@media (max-width: 480px) {
+    #addon {
+        padding: 1.5rem;
+        width: calc(100% - 2rem);
+        margin: 1rem;
+    }
+
+    .logo img {
+        width: 64px;
+        height: 64px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 0.875rem;
+    }
+
+    input[type="text"], select {
+        padding: 0.625rem 0.875rem;
+        font-size: 0.875rem;
+    }
+
+    button {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .form-element {
+        margin-bottom: 1.25rem;
+    }
+
+    .checkbox-wrapper {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 360px) {
+    #addon {
+        padding: 1.25rem;
+    }
+
+    .logo img {
+        width: 56px;
+        height: 56px;
+    }
+
+    h1 {
+        font-size: 1.25rem;
+    }
+
+    h2 {
+        font-size: 0.8125rem;
+    }
+
+    .button-container {
+        gap: 0.5rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    #addon {
+        width: 480px;
+        transform: scale(1.1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #6B5AE8;
+        --primary-light: #8C7CF6;
+    }
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.install-link button:disabled:hover,
+.copy-link button:disabled:hover {
+    background: var(--primary-color);
+    transform: none;
+    border-color: var(--border-color);
+} 

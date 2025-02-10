@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const { logger } = require('../utils/logger');
 const manifestRoutes = require('./manifest');
 const streamRoutes = require('./stream');
 const { requestLogger, errorHandler } = require('../middleware');
@@ -7,6 +8,8 @@ const { requestLogger, errorHandler } = require('../middleware');
 const router = express.Router();
 
 router.use(requestLogger);
+
+router.use('/public', express.static(path.join(__dirname, '../../public')));
 
 router.get("/", (req, res) => {
     logger.info('Route /: Redirecting to /configure');

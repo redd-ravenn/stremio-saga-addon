@@ -8,7 +8,9 @@ const { redisClient } = require('./services/cache');
 const app = express();
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, '../public')));
+
+app.use('/public', express.static(path.join(__dirname, '../public')));
+
 app.use('/', routes);
 
 const gracefulShutdown = async () => {
